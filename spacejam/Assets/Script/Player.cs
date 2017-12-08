@@ -52,5 +52,9 @@ public class Player : MonoBehaviour {
         {
             speedtoHelth = 1;
         }
+        if (HP <= 0)
+        {
+            Time.timeScale = 0;
+        }
     }
 }
