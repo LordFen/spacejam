@@ -14,7 +14,6 @@ public class PlaySound : MonoBehaviour {
     void PlayNextSong()
     {
         audioSource.Stop();
-        Debug.Log("NextSong");
         audioSource.clip=tabClips[Random.Range(0, tabClips.Length)];
         audioSource.Play();
         Invoke("PlayNextSong", audioSource.clip.length);
