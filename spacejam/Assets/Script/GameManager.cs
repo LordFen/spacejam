@@ -7,10 +7,11 @@ public class GameManager : MonoBehaviour {
     float day = 360;
     public float secPerDay;
     float timer;
-    public GameObject[] objectSpace;
+    public ObjectSpace[] objectSpace;
     public Text dayCounter;
     public Image hubCondition;
-    public float hubAverageCondition = 0; //przenieść do FixedUpdate gdy obiekty będą miały health
+    private float hubAverageCondition = 0; //przenieść do FixedUpdate gdy obiekty będą miały health
+    private const float maxHealth = 100;
     // Use this for initialization
     void Start () {
         timer = secPerDay;
@@ -24,13 +25,13 @@ public class GameManager : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        
-        /*for (int i = 0; i < objectSpace.Length; i++)
+        hubAverageCondition = 0;
+        for (int i = 0; i < objectSpace.Length; i++)
         {
-            //hubAverageCondition += objectSpace[i].health;
-        }*/
+            hubAverageCondition += objectSpace[i].Health;
+        }
 
-        hubCondition.fillAmount = (float) hubAverageCondition / objectSpace.Length/100;
+        hubCondition.fillAmount = ((float)hubAverageCondition * 100 / (objectSpace.Length * maxHealth)/100);
         if (timer < 0)
         {
             day--;
