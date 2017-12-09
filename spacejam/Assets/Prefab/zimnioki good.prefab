@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13177444560dd2a428eec88b6c89644c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 50
+  health: 100
   explosionDamage: 20
   objectConditionImage: {fileID: 114669642497678936}
   precentPerTime: 3

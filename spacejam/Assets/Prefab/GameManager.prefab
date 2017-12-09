@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d67271d786c3ac4c8003ee462f24fb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  secPerDay: 5
+  secPerDay: 1.5
   objectSpace:
   - {fileID: 0}
   - {fileID: 0}
