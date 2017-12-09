@@ -129,14 +129,15 @@ public class UnexpectedActionController : MonoBehaviour
         if (arrow.activeInHierarchy)
         {
             arrow.transform.Translate(arrowSpeed * Time.fixedDeltaTime, 0, 0);
+
+            if (arrow.transform.position.x >= endPoint.position.x)
+            {
+                StopUnexpectedAction();
+                if (OnHitDamage != null)
+                    OnHitDamage();
+            }
         }
 
-        if (arrow.transform.position.x >= endPoint.position.x)
-        {
-            StopUnexpectedAction();
-            if (OnHitDamage != null)
-                OnHitDamage();
-        }
     }
 
     void RepairObjectSpace()
