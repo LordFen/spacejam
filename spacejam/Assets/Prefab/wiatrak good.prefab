@@ -190,6 +190,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13177444560dd2a428eec88b6c89644c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  qualityList:
+  - {fileID: 21300000, guid: 71e4b496f94af6c43916cce408eb4ff4, type: 3}
+  - {fileID: 21300000, guid: 5d13abfdda0d74c4683576394396ebdd, type: 3}
+  - {fileID: 21300000, guid: a526da2f6cdc22e45bc03b309327f4f1, type: 3}
   health: 100
   explosionDamage: 20
   objectConditionImage: {fileID: 114180447777950358}
