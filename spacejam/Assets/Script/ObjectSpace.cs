@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class ObjectSpace : MonoBehaviour
 {
-    public int health = 50; //usunąć public jak działa
+    public float health = 50; //usunąć public jak działa
     public int explosionDamage = 20;
     private const int defaultHealthAfterExplosion = 10;
     public Image objectConditionImage;
@@ -14,8 +15,26 @@ public class ObjectSpace : MonoBehaviour
     float timer;
     public int chanceToExplode = 0;
     public GameObject explode;
+    private bool readyToBeRepaired = false;
 
-    public int Health
+    public delegate void RepairObjectSpace(ObjectSpace objectSpace);
+    public static RepairObjectSpace OnRepairObjectSpace;
+
+    public delegate void StopRepairObjectSpace();
+    public static event StopRepairObjectSpace OnStopRepairObjectSpace;
+    //   public static event 
+
+    public enum StateObjectSpace
+    {
+        Idle,
+        Repairing
+    };
+
+    [HideInInspector]
+    public StateObjectSpace stateObjectSpace = StateObjectSpace.Idle;
+
+
+    public float Health
     {
         get
         {
@@ -28,6 +47,12 @@ public class ObjectSpace : MonoBehaviour
             {
                 health = 0;
             }
+
+            if (health >= 100)
+            {
+                stateObjectSpace = StateObjectSpace.Idle;
+                health = 100;
+            }
         }
     }
 
@@ -37,18 +62,39 @@ public class ObjectSpace : MonoBehaviour
         timer = timeBetweenLostCondition;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-
+        if (readyToBeRepaired && Health < 100 && stateObjectSpace==StateObjectSpace.Idle)
+        {
+            CheckInputSpace();
+        }
     }
+
+    void CheckInputSpace()
+    {
+        if (Input.GetButtonDown("Jump"))
+        {
+            stateObjectSpace = StateObjectSpace.Repairing;
+            if (OnRepairObjectSpace != null)
+            {
+                OnRepairObjectSpace(this);
+            }
+        }
+    }
+
     private void FixedUpdate()
+    {
+        if (stateObjectSpace==StateObjectSpace.Idle)
+            RunDestroyYourselfTimer();
+    }
+
+    void RunDestroyYourselfTimer()
     {
         if (timer < 0)
         {
             Health -= precentPerTime;
             timer = timeBetweenLostCondition;
-            if (Random.Range(0, 100) < chanceToExplode)
+            if (UnityEngine.Random.Range(0, 100) < chanceToExplode)
             {
                 Instantiate(explode, transform.position, transform.rotation);
                 if (Health - explosionDamage <= 10)
@@ -64,7 +110,34 @@ public class ObjectSpace : MonoBehaviour
         }
         else
         {
-            timer -= Time.deltaTime;
+            timer -= Time.fixedDeltaTime;
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            readyToBeRepaired = true;
+            Debug.Log("Press Space");
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            StopBeingRepairig();
+        }
+    }
+
+    private void StopBeingRepairig()
+    {
+        if (readyToBeRepaired)
+            if (OnStopRepairObjectSpace != null)
+                OnStopRepairObjectSpace();
+        readyToBeRepaired = false;
+        stateObjectSpace = StateObjectSpace.Idle;
+        Debug.Log("End Repair");
     }
 }

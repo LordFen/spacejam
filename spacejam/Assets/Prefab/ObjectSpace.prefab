@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4898815439681488}
   - component: {fileID: 212855721277155126}
   - component: {fileID: 114866368557336738}
+  - component: {fileID: 58998875921687100}
   m_Layer: 0
   m_Name: ObjectSpace
   m_TagString: Untagged
@@ -35,12 +36,27 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1326915401911624}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.94, y: -0.42573005, z: 0}
+  m_LocalPosition: {x: -4.78, y: 2.15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &58998875921687100
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1326915401911624}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 2.29
 --- !u!114 &114866368557336738
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -53,11 +69,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 50
+  explosionDamage: 20
   objectConditionImage: {fileID: 0}
   precentPerTime: 3
   timeBetweenLostCondition: 2
-  chanceToExplode: 0
-  explode: {fileID: 0}
+  chanceToExplode: 2
+  explode: {fileID: 1002180261324096, guid: 9da06f2c8c030914f9e114f88c41f95c, type: 2}
+  stateObjectSpace: 0
 --- !u!212 &212855721277155126
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -67,7 +85,6 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -83,7 +100,6 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5

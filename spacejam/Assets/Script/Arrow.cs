@@ -14,10 +14,8 @@ public class Arrow : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("And");
         if(collision.CompareTag("Placement"))
         {
-            Debug.Log("Inter");
             intersect = true;
             afterInter = true;
         }
@@ -30,7 +28,6 @@ public class Arrow : MonoBehaviour {
             if (!afterInter)
             {
                 intersect = false;
-                Debug.Log("Out");
             }
         }
     }

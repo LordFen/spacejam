@@ -14,8 +14,13 @@ public class UnexpectedActionController : MonoBehaviour
     public Transform endPoint;
 
     public Arrow arrowCollision;
+    private ObjectSpace currentObjectSpace;
+
+    public delegate void HitDamage();
+    public static event HitDamage OnHitDamage;
 
     public float arrowSpeed;
+    public float speedOfRepairing = 2;
     public float fateAction;
     private float actionTimer;
 
@@ -39,13 +44,22 @@ public class UnexpectedActionController : MonoBehaviour
 
     Transform transformPlayer;
 
-    void Start()
+    private void OnEnable()
     {
-
+        ObjectSpace.OnRepairObjectSpace += StartUnexpectedAction;
+        ObjectSpace.OnStopRepairObjectSpace += StopUnexpectedAction;
     }
 
-    void StartUnexpectedAction()
+    private void OnDisable()
     {
+        ObjectSpace.OnRepairObjectSpace -= StartUnexpectedAction;
+        ObjectSpace.OnStopRepairObjectSpace -= StopUnexpectedAction;
+    }
+
+
+    void StartUnexpectedAction(ObjectSpace objSpace)
+    {
+        currentObjectSpace = objSpace;
         ResetTimerAction();
         isEventActionStart = true;
     }
@@ -54,19 +68,28 @@ public class UnexpectedActionController : MonoBehaviour
     {
         if (isEventActionStart)
         {
-            //Repair
+            RepairObjectSpace();
             RunTimerAction();
         }
 
-        if(arrow.activeInHierarchy)
+        if (arrow.activeInHierarchy)
         {
             arrow.transform.Translate(arrowSpeed * Time.fixedDeltaTime, 0, 0);
         }
 
-        if(arrow.transform.position.x>=endPoint.position.x)
+        if (arrow.transform.position.x >= endPoint.position.x)
         {
-            IsMomentActionStart = false;
+            StopUnexpectedAction();
+            if (OnHitDamage != null)
+                OnHitDamage();
         }
+    }
+
+    void RepairObjectSpace()
+    {
+        currentObjectSpace.Health += Time.fixedDeltaTime * speedOfRepairing;
+        if (currentObjectSpace.Health >= 100)
+            StopUnexpectedAction();
     }
 
     void RunTimerAction()
@@ -87,7 +110,6 @@ public class UnexpectedActionController : MonoBehaviour
 
     void ManageSpriteAction()
     {
-        Debug.Log("Show");
         arrow.transform.position = startPoint.transform.position;
     }
 
@@ -100,12 +122,6 @@ public class UnexpectedActionController : MonoBehaviour
     {
         if (IsMomentActionStart)
             CheckInputSpace();
-
-        if(Input.GetButtonDown("Submit"))
-        {
-            StartUnexpectedAction();
-            Debug.Log("GOGOGOGO");
-        }
     }
 
     private void CheckInputSpace()
@@ -120,13 +136,15 @@ public class UnexpectedActionController : MonoBehaviour
     void CheckIfArrowHasGoodPlace()
     {
 
-        if(arrowCollision.intersect)
+        if (arrowCollision.intersect)
         {
-            Debug.Log("IT WURKS");
             arrowCollision.intersect = false;
         }
         else
         {
+            StopUnexpectedAction();
+            if (OnHitDamage != null)
+                OnHitDamage();
             Debug.Log("Wrong Idiot");
         }
         //arrow placement
@@ -138,5 +156,6 @@ public class UnexpectedActionController : MonoBehaviour
         isEventActionStart = false;
         IsMomentActionStart = false;
         isPlayerPressSpace = false;
+        currentObjectSpace.stateObjectSpace = ObjectSpace.StateObjectSpace.Idle;
     }
 }
