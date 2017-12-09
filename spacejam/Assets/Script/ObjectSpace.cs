@@ -21,6 +21,7 @@ public class ObjectSpace : MonoBehaviour
     public GameObject endImage;
     private bool readyToBeRepaired = false;
     private SpriteRenderer renderer;
+    public AudioSource repair;
 
     public delegate void RepairObjectSpace(ObjectSpace objectSpace);
     public static RepairObjectSpace OnRepairObjectSpace;
@@ -111,6 +112,7 @@ public class ObjectSpace : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump"))
         {
+            repair.Play();
             stateObjectSpace = StateObjectSpace.Repairing;
             if (OnRepairObjectSpace != null)
             {

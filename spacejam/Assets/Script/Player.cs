@@ -7,11 +7,12 @@ public class Player : MonoBehaviour
     public float HP = 100;
     public float damageFromObjectSpace = 20;
     public Animator animator;
-    public float speed = 5;
+    public float speed = 10;
     float speedtoHelth = 1;
     public float bleedingTime;
     float timer;
     public GameObject blood;
+    public GameObject endImage;
     Vector3 PlayerPos;
 
     private float xLast;
@@ -29,7 +30,11 @@ public class Player : MonoBehaviour
         {
             HP = value;
             if (HP <= 0)
+            {
                 HP = 0;
+                Time.timeScale = 0;
+                Instantiate(endImage, new Vector3(0, 0, 0), transform.rotation);
+            }   
         }
     }
 
