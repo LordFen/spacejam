@@ -9,7 +9,7 @@ public class UnexpectedActionController : MonoBehaviour
     public GameObject background;
     public GameObject arrow;
     public GameObject goodPlacement;
-
+    public GameObject gear;
     public Transform startPoint;
     public Transform endPoint;
 
@@ -61,9 +61,23 @@ public class UnexpectedActionController : MonoBehaviour
     {
         Debug.Log("Start Action");
         currentObjectSpace = objSpace;
+        SetGearPosition();
       //  SetPositionAction();
         ResetTimerAction();
         isEventActionStart = true;
+    }
+
+    void SetGearPosition()
+    {
+        Debug.Log("Show Gear");
+        gear.transform.position = currentObjectSpace.transform.position;
+        gear.SetActive(true);
+    }
+
+    void DisableGear()
+    {
+        Debug.Log("Disable Gear");
+        gear.SetActive(false);
     }
 
     void SetPositionAction()
@@ -165,6 +179,7 @@ public class UnexpectedActionController : MonoBehaviour
     void StopUnexpectedAction()
     {
         Debug.Log("End Action");
+        DisableGear();
         isEventActionStart = false;
         IsMomentActionStart = false;
         isPlayerPressSpace = false;
