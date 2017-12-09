@@ -60,7 +60,7 @@ public class UnexpectedActionController : MonoBehaviour
     void StartUnexpectedAction(ObjectSpace objSpace)
     {
         currentObjectSpace = objSpace;
-        SetPositionAction();
+      //  SetPositionAction();
         ResetTimerAction();
         isEventActionStart = true;
     }

@@ -155,7 +155,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1513420823052090}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.9, y: -1.6, z: 0}
   m_LocalScale: {x: 0.5, y: 1, z: 1}
   m_Children:
   - {fileID: 4433059062544650}
@@ -170,7 +170,7 @@ Transform:
   m_GameObject: {fileID: 1978586285199324}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.68, y: 2.04, z: 0}
-  m_LocalScale: {x: 1.6, y: 2.6, z: 1}
+  m_LocalScale: {x: 20, y: 10, z: 1}
   m_Children:
   - {fileID: 4475676913793496}
   - {fileID: 4060825795433678}
@@ -292,7 +292,7 @@ MonoBehaviour:
   startPoint: {fileID: 4475676913793496}
   endPoint: {fileID: 4060825795433678}
   arrowCollision: {fileID: 114574231266473484}
-  arrowSpeed: 5
+  arrowSpeed: 50
   speedOfRepairing: 2
   fateAction: 2
 --- !u!212 &212113838652524276

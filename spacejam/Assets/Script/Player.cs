@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     public float HP = 100;
     public float damageFromObjectSpace = 20;
     public Animator animator;
-    float speed = 5;
+    public float speed = 5;
     float speedtoHelth = 1;
     public float bleedingTime;
     float timer;
