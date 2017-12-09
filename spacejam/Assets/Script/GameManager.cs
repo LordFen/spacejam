@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
-    float day = 360;
+    public static float day = 360;
     public float secPerDay;
     float timer;
     public ObjectSpace[] objectSpace;

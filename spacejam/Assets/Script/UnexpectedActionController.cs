@@ -11,6 +11,7 @@ public class UnexpectedActionController : MonoBehaviour
     public GameObject goodPlacement;
     public GameObject gear;
     public Transform startPoint;
+    public Transform midPoint;
     public Transform endPoint;
 
     public Arrow arrowCollision;
@@ -37,9 +38,42 @@ public class UnexpectedActionController : MonoBehaviour
             enabledMomentActionStart = value;
             background.SetActive(value);
             arrow.SetActive(value);
+            SetGoodPlacement();
+            ScaleGoodPlacement();
             goodPlacement.SetActive(value);
         }
     }
+
+    private void SetGoodPlacement()
+    {
+        Vector3 newPos = new Vector3(Random.Range(midPoint.position.x, endPoint.position.x), endPoint.transform.position.y, endPoint.transform.position.z);
+        goodPlacement.transform.position = newPos;
+    }
+
+    private void ScaleGoodPlacement()
+    {
+        if(GameManager.day<=10)
+        {
+            goodPlacement.transform.localScale = new Vector3(2, goodPlacement.transform.localScale.y, goodPlacement.transform.localScale.z);
+        }
+        else if(GameManager.day <= 50)
+        {
+            goodPlacement.transform.localScale = new Vector3(3, goodPlacement.transform.localScale.y, goodPlacement.transform.localScale.z);
+        }
+        else if(GameManager.day <= 100)
+        {
+            goodPlacement.transform.localScale = new Vector3(4, goodPlacement.transform.localScale.y, goodPlacement.transform.localScale.z);
+        }
+        else if (GameManager.day <= 200)
+        {
+            goodPlacement.transform.localScale = new Vector3(5, goodPlacement.transform.localScale.y, goodPlacement.transform.localScale.z);
+        }
+        else if (GameManager.day <= 300)
+        {
+            goodPlacement.transform.localScale = new Vector3(6, goodPlacement.transform.localScale.y, goodPlacement.transform.localScale.z);
+        }
+    }
+
     private bool isPlayerPressSpace = false;
 
     Transform transformPlayer;
@@ -59,7 +93,6 @@ public class UnexpectedActionController : MonoBehaviour
 
     void StartUnexpectedAction(ObjectSpace objSpace)
     {
-        Debug.Log("Start Action");
         currentObjectSpace = objSpace;
         SetGearPosition();
       //  SetPositionAction();
@@ -69,14 +102,12 @@ public class UnexpectedActionController : MonoBehaviour
 
     void SetGearPosition()
     {
-        Debug.Log("Show Gear");
         gear.transform.position = currentObjectSpace.transform.position;
         gear.SetActive(true);
     }
 
     void DisableGear()
     {
-        Debug.Log("Disable Gear");
         gear.SetActive(false);
     }
 
