@@ -13,17 +13,15 @@ public class UnexpectedActionController : MonoBehaviour
     public Transform startPoint;
     public Transform midPoint;
     public Transform endPoint;
-
+    public AudioSource reparing;
     public Arrow arrowCollision;
     private ObjectSpace currentObjectSpace;
 
     public delegate void HitDamage();
     public static event HitDamage OnHitDamage;
 
-    private bool canHitDamage = false;
-
     public float arrowSpeed;
-    public float speedOfRepairing = 2;
+    public float speedOfRepairing = 4;
     public float fateAction;
     private float actionTimer;
 
@@ -135,13 +133,9 @@ public class UnexpectedActionController : MonoBehaviour
 
         if (arrow.transform.position.x >= endPoint.position.x)
         {
-            if (canHitDamage)
-            {
-                canHitDamage = false;
-                StopUnexpectedAction();
-                if (OnHitDamage != null)
-                    OnHitDamage();
-            }
+            StopUnexpectedAction();
+            if (OnHitDamage != null)
+                OnHitDamage();
         }
     }
 
@@ -160,7 +154,6 @@ public class UnexpectedActionController : MonoBehaviour
                 actionTimer = fateAction;
                 ManageSpriteAction();
                 IsMomentActionStart = true;
-                canHitDamage = true;
                 ResetTimerAction();
             }
             else
@@ -189,6 +182,7 @@ public class UnexpectedActionController : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump"))
         {
+            reparing.Play();
             IsMomentActionStart = false;
             CheckIfArrowHasGoodPlace();
         }
