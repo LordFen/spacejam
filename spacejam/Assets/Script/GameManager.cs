@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour {
     float day = 360;
     public float secPerDay;
     float timer;
-    GameObject[] objectSpace;
+    public GameObject[] objectSpace;
     public Text dayCounter;
     public Image hubCondition;
     public float hubAverageCondition = 0; //przenieść do FixedUpdate gdy obiekty będą miały health

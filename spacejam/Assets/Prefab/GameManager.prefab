@@ -52,6 +52,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   secPerDay: 5
+  objectSpace:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   dayCounter: {fileID: 0}
   hubCondition: {fileID: 0}
-  hubAverageCondition: 0
+  hubAverageCondition: 50
