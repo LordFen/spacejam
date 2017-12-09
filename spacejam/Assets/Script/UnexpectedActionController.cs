@@ -59,6 +59,7 @@ public class UnexpectedActionController : MonoBehaviour
 
     void StartUnexpectedAction(ObjectSpace objSpace)
     {
+        Debug.Log("Start Action");
         currentObjectSpace = objSpace;
       //  SetPositionAction();
         ResetTimerAction();
@@ -136,6 +137,7 @@ public class UnexpectedActionController : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump"))
         {
+            Debug.Log("You Press Space");
             IsMomentActionStart = false;
             CheckIfArrowHasGoodPlace();
         }
@@ -147,6 +149,7 @@ public class UnexpectedActionController : MonoBehaviour
         if (arrowCollision.intersect)
         {
             arrowCollision.intersect = false;
+            Debug.Log("Good");
         }
         else
         {
@@ -161,6 +164,7 @@ public class UnexpectedActionController : MonoBehaviour
 
     void StopUnexpectedAction()
     {
+        Debug.Log("End Action");
         isEventActionStart = false;
         IsMomentActionStart = false;
         isPlayerPressSpace = false;
