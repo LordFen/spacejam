@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Arrow : MonoBehaviour {
+public class Arrow : MonoBehaviour
+{
 
     public bool intersect = false;
     // Use this for initialization
@@ -14,7 +15,7 @@ public class Arrow : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Placement"))
+        if (collision.CompareTag("Placement"))
         {
             intersect = true;
             afterInter = true;

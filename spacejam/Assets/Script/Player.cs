@@ -6,12 +6,18 @@ public class Player : MonoBehaviour
 {
     public float HP = 100;
     public float damageFromObjectSpace = 20;
+    public Animator animator;
     float speed = 5;
     float speedtoHelth = 1;
     public float bleedingTime;
     float timer;
     public GameObject blood;
     Vector3 PlayerPos;
+
+    private float xLast;
+    private float yLast;
+    bool repair;
+    bool move;
 
     public float HealthPlayer
     {
@@ -30,6 +36,8 @@ public class Player : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        xLast = Input.GetAxis("Horizontal");
+        yLast = Input.GetAxis("Vertical");
         timer = bleedingTime;
         PlayerPos = transform.position;
     }
@@ -37,6 +45,7 @@ public class Player : MonoBehaviour
     private void OnEnable()
     {
         UnexpectedActionController.OnHitDamage += GetDamage;
+
     }
 
     private void OnDisable()
@@ -54,6 +63,8 @@ public class Player : MonoBehaviour
         float xPos = transform.position.x + (Input.GetAxis("Horizontal") * speed * speedtoHelth * Time.deltaTime);
         float yPos = transform.position.y + (Input.GetAxis("Vertical") * speed * speedtoHelth * Time.deltaTime);
         PlayerPos = new Vector3(xPos, yPos, 0);
+
+        SetAnimation();
         transform.position = PlayerPos;
 
         if (HealthPlayer < 50)
@@ -85,6 +96,41 @@ public class Player : MonoBehaviour
         {
             Time.timeScale = 0;
         }
+    }
+
+    private void SetAnimation()
+    {
+        float xAnim = Input.GetAxis("Horizontal");
+        float yAnim = Input.GetAxis("Vertical");
+
+        if (xAnim == 0 && yAnim == 0)
+        {
+            move = false;
+        }
+
+        else if (xAnim <= 0.7f && yAnim <= 0.7f && xAnim >= -0.7f && yAnim >= -0.7f)
+        {
+            move = false;
+            xAnim = 0;
+            yAnim = 0;
+        }
+        else
+        {
+            move = true;
+            xLast = Input.GetAxis("Horizontal");
+            yLast = Input.GetAxis("Vertical");
+        }
+
+
+        repair = UnexpectedActionController.isEventActionStart;
+
+        animator.SetFloat("InputX", xAnim);
+        animator.SetFloat("InputY", yAnim);
+        animator.SetFloat("LastX", xLast);
+        animator.SetFloat("LastY", yLast);
+        animator.SetBool("Move", move);
+        animator.SetBool("Repair", repair);
+
     }
 
     private void GetDamage()

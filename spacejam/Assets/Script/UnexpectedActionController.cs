@@ -24,7 +24,7 @@ public class UnexpectedActionController : MonoBehaviour
     public float fateAction;
     private float actionTimer;
 
-    static bool isEventActionStart = false;
+    public static bool isEventActionStart = false;
     private bool enabledMomentActionStart = false;
     private bool IsMomentActionStart
     {
@@ -67,7 +67,7 @@ public class UnexpectedActionController : MonoBehaviour
 
     void SetPositionAction()
     {
-        Vector3 newPositionForAction = new Vector3(currentObjectSpace.transform.position.x, currentObjectSpace.transform.position.y+1, currentObjectSpace.transform.position.z);
+        Vector3 newPositionForAction = new Vector3(currentObjectSpace.transform.position.x, currentObjectSpace.transform.position.y + 1, currentObjectSpace.transform.position.z);
         transform.position = newPositionForAction;
     }
 
@@ -164,6 +164,7 @@ public class UnexpectedActionController : MonoBehaviour
         isEventActionStart = false;
         IsMomentActionStart = false;
         isPlayerPressSpace = false;
-        currentObjectSpace.stateObjectSpace = ObjectSpace.StateObjectSpace.Idle;
+        if (currentObjectSpace != null)
+            currentObjectSpace.stateObjectSpace = ObjectSpace.StateObjectSpace.Idle;
     }
 }

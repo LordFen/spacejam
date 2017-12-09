@@ -116,7 +116,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1825034151976850}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0616, y: 0, z: -3}
+  m_LocalPosition: {x: 3.21, y: 0, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4433059062544650}
@@ -129,8 +129,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1160571555684634}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.0626, y: 0.002000001, z: -3}
-  m_LocalScale: {x: 0.099999994, y: 1, z: 1}
+  m_LocalPosition: {x: -0.41, y: 0, z: -3}
+  m_LocalScale: {x: 1, y: 2.966875, z: 1}
   m_Children: []
   m_Father: {fileID: 4433059062544650}
   m_RootOrder: 2
@@ -142,8 +142,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1566638107475546}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0218, y: 0.0060000005, z: -2}
-  m_LocalScale: {x: 0.17506847, y: 1, z: 1}
+  m_LocalPosition: {x: 1.15, y: 0.0060000005, z: -2}
+  m_LocalScale: {x: 6.636931, y: 2.7499995, z: 1}
   m_Children: []
   m_Father: {fileID: 4433059062544650}
   m_RootOrder: 3
@@ -169,8 +169,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1978586285199324}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.84, y: -0.14, z: 0}
-  m_LocalScale: {x: 100, y: 5, z: 1}
+  m_LocalPosition: {x: 0.68, y: 2.04, z: 0}
+  m_LocalScale: {x: 1.6, y: 2.6, z: 1}
   m_Children:
   - {fileID: 4475676913793496}
   - {fileID: 4060825795433678}
@@ -186,7 +186,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1839143368252016}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0624, y: 0, z: -3}
+  m_LocalPosition: {x: -3.6, y: 0, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4433059062544650}
@@ -369,7 +369,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 28dfe974d3c0a634f90e3c13ec04cb44, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -65,13 +65,13 @@ public class ObjectSpace : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        Health=health;
+        Health = health;
         timer = timeBetweenLostCondition;
     }
 
     private void Update()
     {
-        if (readyToBeRepaired && Health < 100 && stateObjectSpace==StateObjectSpace.Idle)
+        if (readyToBeRepaired && Health < 100 && stateObjectSpace == StateObjectSpace.Idle)
         {
             CheckInputSpace();
         }
@@ -91,7 +91,7 @@ public class ObjectSpace : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (stateObjectSpace==StateObjectSpace.Idle)
+        if (stateObjectSpace == StateObjectSpace.Idle)
             RunDestroyYourselfTimer();
     }
 
@@ -104,7 +104,7 @@ public class ObjectSpace : MonoBehaviour
             if (UnityEngine.Random.Range(0, 100) < chanceToExplode)
             {
                 Instantiate(explode, transform.position, transform.rotation);
-                if (Health>10 && Health - explosionDamage <= 10)
+                if (Health > 10 && Health - explosionDamage <= 10)
                 {
                     Health = defaultHealthAfterExplosion;
                 }
