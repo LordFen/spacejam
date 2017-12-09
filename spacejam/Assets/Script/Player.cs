@@ -13,6 +13,19 @@ public class Player : MonoBehaviour
     public GameObject blood;
     Vector3 PlayerPos;
 
+    public float HealthPlayer
+    {
+        get
+        {
+            return HP;
+        }
+        set
+        {
+            HP = value;
+            if (HP <= 0)
+                HP = 0;
+        }
+    }
 
     // Use this for initialization
     void Start()
@@ -43,7 +56,7 @@ public class Player : MonoBehaviour
         PlayerPos = new Vector3(xPos, yPos, 0);
         transform.position = PlayerPos;
 
-        if (HP < 50)
+        if (HealthPlayer < 50)
         {
             if (timer < 0)
             {
@@ -56,9 +69,9 @@ public class Player : MonoBehaviour
                 timer -= Time.deltaTime;
             }
         }
-        if (HP < 80)
+        if (HealthPlayer < 80)
         {
-            speedtoHelth = HP / 100;
+            speedtoHelth = HealthPlayer / 100;
             if (speedtoHelth < 0.3)
             {
                 speedtoHelth = (float)0.3;
@@ -68,7 +81,7 @@ public class Player : MonoBehaviour
         {
             speedtoHelth = 1;
         }
-        if (HP <= 0)
+        if (HealthPlayer <= 0)
         {
             Time.timeScale = 0;
         }
@@ -76,6 +89,7 @@ public class Player : MonoBehaviour
 
     private void GetDamage()
     {
-        HP -= damageFromObjectSpace;
+        HealthPlayer -= damageFromObjectSpace;
+        Debug.Log("HP " + HealthPlayer);
     }
 }
