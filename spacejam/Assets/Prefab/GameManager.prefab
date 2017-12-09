@@ -59,4 +59,3 @@ MonoBehaviour:
   - {fileID: 0}
   dayCounter: {fileID: 0}
   hubCondition: {fileID: 0}
-  hubAverageCondition: 50
