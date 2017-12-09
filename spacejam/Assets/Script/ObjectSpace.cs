@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public class ObjectSpace : MonoBehaviour
 {
+
+    public List<Sprite> qualityList;
+
     public float health = 50; //usunąć public jak działa
     public int explosionDamage = 20;
     private const int defaultHealthAfterExplosion = 10;
@@ -16,6 +19,7 @@ public class ObjectSpace : MonoBehaviour
     public int chanceToExplode = 0;
     public GameObject explode;
     private bool readyToBeRepaired = false;
+    private SpriteRenderer renderer;
 
     public delegate void RepairObjectSpace(ObjectSpace objectSpace);
     public static RepairObjectSpace OnRepairObjectSpace;
@@ -53,13 +57,36 @@ public class ObjectSpace : MonoBehaviour
                 stateObjectSpace = StateObjectSpace.Idle;
                 health = 100;
             }
+            CheckQuality();
             SetHealthBar();
         }
     }
 
+    private void CheckQuality()
+    {
+        if(health>=50)
+        {
+            renderer.sprite = qualityList[0];
+        }
+        else if(health>=20)
+        {
+            renderer.sprite = qualityList[1];
+        }
+        else
+        {
+            renderer.sprite = qualityList[2];
+        }
+    }
+
+
     private void SetHealthBar()
     {
         objectConditionImage.fillAmount = (float)health / 100;
+    }
+
+    private void Awake()
+    {
+        renderer = GetComponent<SpriteRenderer>();
     }
 
     // Use this for initialization
