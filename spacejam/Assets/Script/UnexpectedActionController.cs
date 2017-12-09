@@ -20,6 +20,8 @@ public class UnexpectedActionController : MonoBehaviour
     public delegate void HitDamage();
     public static event HitDamage OnHitDamage;
 
+    private bool canHitDamage = false;
+
     public float arrowSpeed;
     public float speedOfRepairing = 2;
     public float fateAction;
@@ -133,9 +135,13 @@ public class UnexpectedActionController : MonoBehaviour
 
         if (arrow.transform.position.x >= endPoint.position.x)
         {
-            StopUnexpectedAction();
-            if (OnHitDamage != null)
-                OnHitDamage();
+            if (canHitDamage)
+            {
+                canHitDamage = false;
+                StopUnexpectedAction();
+                if (OnHitDamage != null)
+                    OnHitDamage();
+            }
         }
     }
 
@@ -154,6 +160,7 @@ public class UnexpectedActionController : MonoBehaviour
                 actionTimer = fateAction;
                 ManageSpriteAction();
                 IsMomentActionStart = true;
+                canHitDamage = true;
                 ResetTimerAction();
             }
             else
@@ -182,7 +189,6 @@ public class UnexpectedActionController : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump"))
         {
-            Debug.Log("You Press Space");
             IsMomentActionStart = false;
             CheckIfArrowHasGoodPlace();
         }
