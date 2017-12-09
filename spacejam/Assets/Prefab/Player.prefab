@@ -39,7 +39,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1020122648825070}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8, y: -15.9, z: -2}
+  m_LocalPosition: {x: 8.9, y: -11.1, z: -6}
   m_LocalScale: {x: 0.45, y: 0.45, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -149,6 +149,8 @@ MonoBehaviour:
   speed: 10
   bleedingTime: 2
   blood: {fileID: 1002180261324096, guid: 9da06f2c8c030914f9e114f88c41f95c, type: 2}
+  endImage: {fileID: 1740748856824314, guid: 4e7970b3cb090e14c893154e3c6097bd, type: 2}
+  healthText: {fileID: 0}
 --- !u!212 &212419278441467374
 SpriteRenderer:
   m_ObjectHideFlags: 1

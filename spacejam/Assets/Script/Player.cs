@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class Player : MonoBehaviour
     float timer;
     public GameObject blood;
     public GameObject endImage;
+    public Text healthText;
     Vector3 PlayerPos;
 
     private float xLast;
@@ -34,13 +36,15 @@ public class Player : MonoBehaviour
                 HP = 0;
                 Time.timeScale = 0;
                 Instantiate(endImage, new Vector3(0, 0, 0), transform.rotation);
-            }   
+            }
+            healthText.text = HP.ToString();
         }
     }
 
     // Use this for initialization
     void Start()
     {
+        healthText.text = HP.ToString();
         xLast = Input.GetAxis("Horizontal");
         yLast = Input.GetAxis("Vertical");
         timer = bleedingTime;
@@ -141,6 +145,5 @@ public class Player : MonoBehaviour
     private void GetDamage()
     {
         HealthPlayer -= damageFromObjectSpace;
-        Debug.Log("HP " + HealthPlayer);
     }
 }
