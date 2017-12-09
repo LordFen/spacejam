@@ -12,7 +12,7 @@ public class UnexpectedActionController : MonoBehaviour
     public GameObject gear;
     public Transform startPoint;
     public Transform endPoint;
-
+    public AudioSource reparing;
     public Arrow arrowCollision;
     private ObjectSpace currentObjectSpace;
 
@@ -20,7 +20,7 @@ public class UnexpectedActionController : MonoBehaviour
     public static event HitDamage OnHitDamage;
 
     public float arrowSpeed;
-    public float speedOfRepairing = 2;
+    public float speedOfRepairing = 4;
     public float fateAction;
     private float actionTimer;
 
@@ -151,7 +151,7 @@ public class UnexpectedActionController : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump"))
         {
-            Debug.Log("You Press Space");
+            reparing.Play();
             IsMomentActionStart = false;
             CheckIfArrowHasGoodPlace();
         }
