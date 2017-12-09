@@ -15,6 +15,7 @@ public class ObjectSpace : MonoBehaviour
     float timer;
     public int chanceToExplode = 0;
     public GameObject explode;
+    public GameObject endImage;
     private bool readyToBeRepaired = false;
 
     public delegate void RepairObjectSpace(ObjectSpace objectSpace);
@@ -46,6 +47,8 @@ public class ObjectSpace : MonoBehaviour
             if (health <= 0)
             {
                 health = 0;
+                Time.timeScale = 0;
+                Instantiate(endImage, new Vector3(0, 0, 0), transform.rotation);
             }
 
             if (health >= 100)
@@ -103,7 +106,8 @@ public class ObjectSpace : MonoBehaviour
             timer = timeBetweenLostCondition;
             if (UnityEngine.Random.Range(0, 100) < chanceToExplode)
             {
-                Instantiate(explode, transform.position, transform.rotation);
+                GameObject exp =  Instantiate(explode, transform.position, transform.rotation);
+                Destroy(exp, 2f);
                 if (Health > 10 && Health - explosionDamage <= 10)
                 {
                     Health = defaultHealthAfterExplosion;
