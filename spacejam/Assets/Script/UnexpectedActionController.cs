@@ -60,9 +60,17 @@ public class UnexpectedActionController : MonoBehaviour
     void StartUnexpectedAction(ObjectSpace objSpace)
     {
         currentObjectSpace = objSpace;
+        SetPositionAction();
         ResetTimerAction();
         isEventActionStart = true;
     }
+
+    void SetPositionAction()
+    {
+        Vector3 newPositionForAction = new Vector3(currentObjectSpace.transform.position.x, currentObjectSpace.transform.position.y+1, currentObjectSpace.transform.position.z);
+        transform.position = newPositionForAction;
+    }
+
 
     private void FixedUpdate()
     {

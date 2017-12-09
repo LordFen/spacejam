@@ -53,12 +53,19 @@ public class ObjectSpace : MonoBehaviour
                 stateObjectSpace = StateObjectSpace.Idle;
                 health = 100;
             }
+            SetHealthBar();
         }
+    }
+
+    private void SetHealthBar()
+    {
+        objectConditionImage.fillAmount = (float)health / 100;
     }
 
     // Use this for initialization
     void Start()
     {
+        Health = health;
         timer = timeBetweenLostCondition;
     }
 
