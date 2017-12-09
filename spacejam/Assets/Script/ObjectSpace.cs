@@ -65,7 +65,7 @@ public class ObjectSpace : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        Health = health;
+        Health=health;
         timer = timeBetweenLostCondition;
     }
 
@@ -104,7 +104,7 @@ public class ObjectSpace : MonoBehaviour
             if (UnityEngine.Random.Range(0, 100) < chanceToExplode)
             {
                 Instantiate(explode, transform.position, transform.rotation);
-                if (Health - explosionDamage <= 10)
+                if (Health>10 && Health - explosionDamage <= 10)
                 {
                     Health = defaultHealthAfterExplosion;
                 }
